@@ -1,10 +1,46 @@
 @startuml
 left to right direction
+skinparam packageStyle rectangle
+
 actor "Пользователь" as User
-package "Моя Программа" {
-    usecase "Запустить код" as UC_Run
-    usecase "Посмотреть результат" as UC_Print
+actor "Администратор" as Admin
+
+rectangle "Диаграмма учета продажи билетов в кинотеатр" {
+    ' Прецеденты Пользователя
+    usecase "Регистрация" as UC_Reg
+    usecase "Вход в систему" as UC_Login
+    usecase "Просмотр расписания" as UC_Schedule
+    usecase "Просмотр афиши" as UC_Movies
+    usecase "Выбор сеанса" as UC_Session
+    usecase "Выбор места" as UC_Seat
+    usecase "Покупка билета" as UC_Ticket
+
+    ' Прецеденты Администратора
+    usecase "Вход в систему" as UC_AdminLogin
+    usecase "Управление фильмами" as UC_ManageMovies
+    usecase "Управление залами" as UC_ManageHalls
+    usecase "Формирование залами" as UC_FormHalls
+    usecase "Просмотр учета" as UC_ViewReports
 }
-User --> UC_Run
-User --> UC_Print
-@enduml 
+
+' Связи Пользователя
+User --> UC_Reg
+User --> UC_Login
+
+' Твоё исправление: Просмотр афиши и расписания доступны ТОЛЬКО после Входа в систему
+UC_Login --> UC_Schedule
+UC_Login --> UC_Movies
+
+' Связи include (пунктирные стрелки)
+UC_Schedule ..> UC_Session : "<<include>>"
+UC_Session ..> UC_Seat : "<<include>>"
+UC_Seat ..> UC_Ticket : "<<include>>"
+
+' Связи Администратора
+Admin --> UC_AdminLogin
+UC_AdminLogin --> UC_ManageMovies
+UC_AdminLogin --> UC_ManageHalls
+UC_AdminLogin --> UC_FormHalls
+UC_AdminLogin --> UC_ViewReports
+
+@enduml
