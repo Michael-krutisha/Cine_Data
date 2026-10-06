@@ -1,0 +1,10 @@
+@startuml
+left to right direction
+actor "Пользователь" as User
+package "Моя Программа" {
+    usecase "Запустить код" as UC_Run
+    usecase "Посмотреть результат" as UC_Print
+}
+User --> UC_Run
+User --> UC_Print
+@enduml
