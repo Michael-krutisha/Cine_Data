@@ -5,7 +5,7 @@ skinparam packageStyle rectangle
 actor "Пользователь" as User
 actor "Администратор" as Admin
 
-rectangle "Диаграмма учета продажи билетов в кинотеатр" {
+rectangle "Диаграмма Use Case" {
     ' Прецеденты Пользователя
     usecase "Регистрация" as UC_Reg
     usecase "Вход в систему" as UC_Login
@@ -24,12 +24,12 @@ rectangle "Диаграмма учета продажи билетов в кин
 }
 
 ' Связи Пользователя
-User --> UC_Reg
-User --> UC_Login
+User -- UC_Reg
+User -- UC_Login
 
 ' Твоё исправление: Просмотр афиши и расписания доступны ТОЛЬКО после Входа в систему
-UC_Login --> UC_Schedule
-UC_Login --> UC_Movies
+UC_Login -- UC_Schedule
+UC_Login -- UC_Movies
 
 ' Связи include (пунктирные стрелки)
 UC_Schedule ..> UC_Session : "<<include>>"
@@ -37,10 +37,10 @@ UC_Session ..> UC_Seat : "<<include>>"
 UC_Seat ..> UC_Ticket : "<<include>>"
 
 ' Связи Администратора
-Admin --> UC_AdminLogin
-UC_AdminLogin --> UC_ManageMovies
-UC_AdminLogin --> UC_ManageHalls
-UC_AdminLogin --> UC_FormHalls
-UC_AdminLogin --> UC_ViewReports
+Admin -- UC_AdminLogin
+UC_AdminLogin -- UC_ManageMovies
+UC_AdminLogin -- UC_ManageHalls
+UC_AdminLogin -- UC_FormHalls
+UC_AdminLogin -- UC_ViewReports
 
 @enduml 
