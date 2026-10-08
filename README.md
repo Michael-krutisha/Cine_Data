@@ -23,4 +23,4 @@
 ## Диаграмма Use Case
 Реализовано с помощью PlantUML:
 
-![Моя Диаграмма](docs/diagram.png)
+![Моя Диаграмма](docs/diagramma.png)
