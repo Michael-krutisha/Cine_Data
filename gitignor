@@ -1,3 +1,4 @@
-_pysache_/
-.рус
+__pysache__/
 .venv/
+.idea
+.vscode
